@@ -1,0 +1,30 @@
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 4px;
+}
+
+.quantity-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.quantity-controls button {
+  padding: 8px 16px;
+  color: white;
+  background: radial-gradient(
+    35% 63% at 50% 50%,
+    rgb(99, 102, 241) 0%,
+    rgb(67, 56, 202) 100%
+  );
+  border: 0;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.quantity-controls_item {
+  font-size: 18px;
+}

@@ -1,4 +1,4 @@
-const cartState = JSON.parse(localStorage.getItem("cart")) || {};
+const cartState = JSON.parse(localStorage.getItem("sigloTech-cart")) || {};
 const cartCountEl = document.getElementById("cartCount");
 const cartItemsEl = document.getElementById("cartItems");
 const cartTotalEl = document.getElementById("cartTotal");
@@ -17,10 +17,12 @@ function updateCartDisplay() {
     const itemDiv = document.createElement("div");
     itemDiv.className = "cart-item";
     itemDiv.innerHTML = `
-      <span>${item.name} ($${item.price.toFixed(2)})</span>
+      <span class="quantity-controls_item">${item.name} ($${item.price.toFixed(
+      2
+    )})</span>
       <div class="quantity-controls">
         <button onclick="changeQuantity('${id}', -1)">-</button>
-        <span>${item.quantity}</span>
+        <span class="quantity-controls_item">${item.quantity}</span>
         <button onclick="changeQuantity('${id}', 1)">+</button>
       </div>
     `;
@@ -29,7 +31,7 @@ function updateCartDisplay() {
 
   cartTotalEl.textContent = total.toFixed(2);
   cartCountEl.textContent = count;
-  localStorage.setItem("cart", JSON.stringify(cartState));
+  localStorage.setItem("sigloTech-cart", JSON.stringify(cartState));
 }
 
 function changeQuantity(id, delta) {
