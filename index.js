@@ -1,4 +1,4 @@
-alert("Script is workgin");
+// alert("Script is workgin");
 const cartState = JSON.parse(localStorage.getItem("sigloTech-cart")) || {};
 const cartCountEls = document.querySelectorAll("#cartCount");
 const cartItemsEl = document.getElementById("cartItems");
