@@ -1,7 +1,8 @@
+alert("Script is workgin");
 const cartState = JSON.parse(localStorage.getItem("sigloTech-cart")) || {};
-const cartCountEl = document.getElementById("cartCount");
+const cartCountEls = document.querySelectorAll("#cartCount");
 const cartItemsEl = document.getElementById("cartItems");
-const cartTotalEl = document.getElementById("cartTotal");
+const cartTotalEls = document.querySelectorAll("#cartTotal");
 
 function updateCartDisplay() {
   cartItemsEl.innerHTML = "";
@@ -29,8 +30,12 @@ function updateCartDisplay() {
     cartItemsEl.appendChild(itemDiv);
   }
 
-  cartTotalEl.textContent = total.toFixed(2);
-  cartCountEl.textContent = count;
+  cartTotalEls.forEach((cartItemsEl) => {
+    cartItemsEl.textContent = total.toFixed(2);
+  });
+  cartCountEls.forEach((cartCountEl) => {
+    cartCountEl.textContent = count;
+  });
   localStorage.setItem("sigloTech-cart", JSON.stringify(cartState));
 }
 
@@ -64,18 +69,30 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
 const modal = document.getElementById("cartModal");
 const backdrop = document.getElementById("backdrop");
 const openCart = document.getElementById("openCart");
-const closeCart = document.getElementById("closeCart");
+const closeCarts = document.querySelectorAll("#closeCart");
+const checkOutBtn = document.getElementById("checkOut");
+const checkOutModal = document.getElementById("checkoutModal");
 
 openCart.addEventListener("click", () => {
   backdrop.style.display = "block";
   gsap.to(modal, { right: 0, duration: 0.5, ease: "power2.out" });
 });
 
+function openCheckOut() {
+  gsap.to(modal, { right: "-100%", duration: 0.5, ease: "power2.in" });
+  gsap.to(checkOutModal, { right: 0, duration: 0.5, ease: "power2.in" });
+}
+
 function closeModal() {
   gsap.to(modal, { right: "-100%", duration: 0.5, ease: "power2.in" });
+  gsap.to(checkOutModal, { right: "-100%", duration: 0.5, ease: "power2.in" });
   backdrop.style.display = "none";
 }
 
+checkOutBtn.addEventListener("click", openCheckOut);
+closeCarts.forEach((closeCart) => {
+  closeCart.addEventListener("click", closeModal);
+});
 closeCart.addEventListener("click", closeModal);
 backdrop.addEventListener("click", closeModal);
 
