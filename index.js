@@ -78,22 +78,29 @@ openCart.addEventListener("click", () => {
   gsap.to(modal, { right: 0, duration: 0.5, ease: "power2.out" });
 });
 
+//Open check out function
 function openCheckOut() {
+  // Closes the cart modal
   gsap.to(modal, { right: "-100%", duration: 0.5, ease: "power2.in" });
+  // Opens the checkout modal
   gsap.to(checkOutModal, { right: 0, duration: 0.5, ease: "power2.in" });
 }
 
+//Function to close the modal
 function closeModal() {
   gsap.to(modal, { right: "-100%", duration: 0.5, ease: "power2.in" });
   gsap.to(checkOutModal, { right: "-100%", duration: 0.5, ease: "power2.in" });
   backdrop.style.display = "none";
 }
 
+//Closes the cart modal and opens the checkout modal
 checkOutBtn.addEventListener("click", openCheckOut);
+
 closeCarts.forEach((closeCart) => {
   closeCart.addEventListener("click", closeModal);
 });
-closeCart.addEventListener("click", closeModal);
+
+// closeCart.addEventListener("click", closeModal);
 backdrop.addEventListener("click", closeModal);
 
 updateCartDisplay();
